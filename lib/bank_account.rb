@@ -9,9 +9,15 @@ class Bank_account
   end
 
   def make_a_deposit(amount, date)
-    @balance =+ amount
-    record_in_history(date, amount, @balance)
+    @balance += amount
+    record_a_deposit(date, amount, @balance)
   end
+
+  def make_a_withdrawal(amount, date)
+    print @balance
+    @balance -= amount
+    record_a_withdrawal(date, amount, @balance)
+  end 
 
   private
 
@@ -27,8 +33,15 @@ class Bank_account
     "#{format_date(date)} || #{format_amount(amount)} || || #{format_amount(@balance)}"
   end 
 
-  def record_in_history(date, amount, balance)
+  def format_withdrawal(date, amount, balance)
+    "#{format_date(date)} || || #{format_amount(amount)} || #{format_amount(@balance)}"
+  end 
+
+  def record_a_deposit(date, amount, balance)
     @history << format_deposit(date, amount, balance)
   end
 
+  def record_a_withdrawal(date, amount, balance)
+    @history << format_withdrawal(date, amount, balance)
+  end
 end
