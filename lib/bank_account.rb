@@ -14,10 +14,16 @@ class Bank_account
   end
 
   def make_a_withdrawal(amount, date)
-    print @balance
     @balance -= amount
     record_a_withdrawal(date, amount, @balance)
-  end 
+  end
+
+  def print_bank_statement
+    @history.reverse.map.with_index do |statement_line, index|
+      print "date || credit || debit || balance" if index.zero? 
+      print "\n#{statement_line}"
+    end
+  end
 
   private
 
