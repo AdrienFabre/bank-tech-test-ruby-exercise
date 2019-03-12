@@ -1,3 +1,5 @@
+require "bank_account.rb"
+
 describe 'print bank statement' do 
   it 'returns the history of transactions' do 
     make_a_deposit(1000,10-01-2012)
