@@ -1,53 +1,33 @@
 require 'date'
+require 'transaction.rb'
+require 'operation.rb'
+require 'statement.rb'
 
-class Bank_account
-  
-  attr_reader :balance, :history
-  def initialize
+class BankAccount
+  attr_reader :balance, :transactions
+  def initialize(
+    operation_class = Operation,
+    transaction_class = Transaction,
+    statement_class = Statement
+  )
     @balance = 0
-    @history = []
+    @transactions = []
+    @operation = operation_class
+    @transaction = transaction_class
+    @statement = statement_class
   end
 
   def make_a_deposit(amount, date)
-    @balance += amount
-    record_a_deposit(date, amount, @balance)
+    @balance = @operation.new(@balance, amount, 'credit').new_balance
+    @transactions << @transaction.new(@balance, amount, 'credit', date)
   end
 
   def make_a_withdrawal(amount, date)
-    @balance -= amount
-    record_a_withdrawal(date, amount, @balance)
+    @balance = @operation.new(@balance, amount, 'debit').new_balance
+    @transactions << @transaction.new(@balance, amount, 'debit', date)
   end
 
   def print_bank_statement
-    @history.reverse.map.with_index do |statement_line, index|
-      print "date || credit || debit || balance" if index.zero? 
-      print "\n#{statement_line}"
-    end
-  end
-
-  private
-
-  def format_date(date)
-    Date.parse(date).strftime("%d/%m/%Y")
-  end
-
-  def format_amount(amount)
-    format('%.2f', amount)
-  end
-
-  def format_deposit(date, amount, balance)
-    "#{format_date(date)} || #{format_amount(amount)} || || #{format_amount(@balance)}"
-  end 
-
-  def format_withdrawal(date, amount, balance)
-    "#{format_date(date)} || || #{format_amount(amount)} || #{format_amount(@balance)}"
-  end 
-
-  def record_a_deposit(date, amount, balance)
-    @history << format_deposit(date, amount, balance)
-  end
-
-  def record_a_withdrawal(date, amount, balance)
-    @history << format_withdrawal(date, amount, balance)
+    @statement.new(@transactions).print_statement
   end
 end
