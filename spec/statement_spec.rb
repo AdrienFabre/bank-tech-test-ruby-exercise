@@ -20,7 +20,6 @@ describe Statement do
       date: '14/01/2012'
     )
   end
-  
   describe 'can print transactions' do
     it 'prints formated transactions' do
       expect { Statement.new(transactions).print_statement }.to output(

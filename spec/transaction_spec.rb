@@ -1,7 +1,7 @@
 require 'transaction.rb'
 
-describe Transaction do 
-  describe 'can store transaction details' do 
+describe Transaction do
+  describe 'can store transaction details' do
     it 'saves transaction details' do
       balance = 500
       transaction = Transaction.new(balance, 1000, 'credit', '10-01-2012')

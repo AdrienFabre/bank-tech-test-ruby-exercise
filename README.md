@@ -1,5 +1,6 @@
 ![](https://travis-ci.org/AdrienFabre/bank_tech_test_ruby.svg?branch=master)
-
+![](<https://codeclimate.com/github/AdrienFabre/bank_tech_test_ruby/maintainability)
+![]("https://codeclimate.com/github/AdrienFabre/bank_tech_test_ruby/test_coverage)
 # Bank tech test
 
 This project is an example of a tech test I could be asked to complete. 
