@@ -1,3 +1,4 @@
+![](https://travis-ci.org/AdrienFabre/bank_tech_test_ruby.svg?branch=master)
 
 # Bank tech test
 
