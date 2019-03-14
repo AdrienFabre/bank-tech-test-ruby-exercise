@@ -17,12 +17,12 @@ class BankAccount
     @statement = statement_class
   end
 
-  def make_a_deposit(amount, date)
+  def make_a_deposit(amount, date = Date.today.strftime('%d-%m-%Y'))
     @balance = @operation.new(@balance, amount, 'credit').new_balance
     @transactions << @transaction.new(@balance, amount, 'credit', date)
   end
 
-  def make_a_withdrawal(amount, date)
+  def make_a_withdrawal(amount, date = Date.today.strftime('%d-%m-%Y'))
     @balance = @operation.new(@balance, amount, 'debit').new_balance
     @transactions << @transaction.new(@balance, amount, 'debit', date)
   end
@@ -31,3 +31,4 @@ class BankAccount
     @statement.new(@transactions).print_statement
   end
 end
+

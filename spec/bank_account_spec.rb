@@ -1,3 +1,4 @@
+
 require 'bank_account.rb'
 
 describe BankAccount do
@@ -12,12 +13,24 @@ describe BankAccount do
     it 'records a deposit with a specific amount and date' do
       expect(@bank_account.transactions[0].balance).to eq 1000
     end
+
+    it 'records a deposit with a specific amount without date' do
+      allow(Date).to receive(:today).and_return Date.new(2019,3,18)
+      @bank_account.make_a_deposit(1000)
+      expect(@bank_account.transactions[1].date).to eq '18-03-2019'
+    end
   end
 
   describe 'can debit a bank account' do
     it 'records a withdraw with a specific amount and date' do
       @bank_account.make_a_withdrawal(500, '14-01-2012')
       expect(@bank_account.transactions[1].balance).to eq 500
+    end
+
+    it 'records a deposit with a specific amount without date' do
+      allow(Date).to receive(:today).and_return Date.new(2019,3,19)
+      @bank_account.make_a_withdrawal(500)
+      expect(@bank_account.transactions[1].date).to eq '19-03-2019'
     end
   end
 
