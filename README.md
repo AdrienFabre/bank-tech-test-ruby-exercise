@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.org/<AdrienFabre>/<bank_tech_test_ruby>.svg?branch=master)](https://travis-ci.org/<AdrienFabre>/<bank_tech_test_ruby>)
-[![Coverage Status](https://coveralls.io/repos/github/<AdrienFabre>/<bank_tech_test_ruby>/badge.svg?branch=master)](https://coveralls.io/github/<AdrienFabre>/<bank_tech_test_ruby>?branch=master)
+[![Build Status](https://travis-ci.org/AdrienFabre/bank_tech_test_ruby.svg?branch=master)](https://travis-ci.org/AdrienFabre/bank_tech_test_ruby)
+
+[![Coverage Status](https://coveralls.io/repos/github/AdrienFabre/bank_tech_test_ruby/badge.svg?branch=master)](https://coveralls.io/github/AdrienFabre/bank_tech_test_ruby?branch=master)
+
 [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/AdrienFabre/<bank_tech_test_ruby>)
 
 # Bank tech test
