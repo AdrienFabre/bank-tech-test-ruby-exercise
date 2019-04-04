@@ -1,34 +1,21 @@
 require 'date'
 require 'transaction.rb'
-require 'operation.rb'
-require 'statement.rb'
-
+# The BankAccount enable the user to make a deposit and a withdrawal
 class BankAccount
   attr_reader :balance, :transactions
-  def initialize(
-    operation_class = Operation,
-    transaction_class = Transaction,
-    statement_class = Statement
-  )
+  def initialize(transaction_class = Transaction)
     @balance = 0
     @transactions = []
-    @operation = operation_class
-    @transaction = transaction_class
-    @statement = statement_class
+    @transaction_class = transaction_class
   end
 
   def make_a_deposit(amount, date = Date.today.strftime('%d-%m-%Y'))
-    @balance = @operation.new(@balance, amount, 'credit').new_balance
-    @transactions << @transaction.new(@balance, amount, 'credit', date)
+    @balance += amount
+    @transactions << @transaction_class.new(@balance, amount, 'credit', date)
   end
 
   def make_a_withdrawal(amount, date = Date.today.strftime('%d-%m-%Y'))
-    @balance = @operation.new(@balance, amount, 'debit').new_balance
-    @transactions << @transaction.new(@balance, amount, 'debit', date)
-  end
-
-  def print_bank_statement
-    @statement.new(@transactions).print_statement
+    @balance -= amount
+    @transactions << @transaction_class.new(@balance, amount, 'debit', date)
   end
 end
-

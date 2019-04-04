@@ -1,10 +1,7 @@
-class Statement
-  def initialize(transactions)
-    @transactions = transactions
-  end
-
-  def print_statement
-    @transactions.reverse.map.with_index do |transaction, index|
+# The Printer prints the bank statement
+class Printer
+  def print_statement(transactions)
+    transactions.reverse.map.with_index do |transaction, index|
       print 'date || credit || debit || balance' if index.zero?
       print "\n#{format_transaction(transaction)}"
     end
@@ -16,10 +13,9 @@ class Statement
     date = format_date(transaction.date)
     amount = format_amount(transaction.amount)
     balance = format_amount(transaction.balance)
-    type = transaction.type
-    if type == 'credit'
+    if transaction.type == 'credit'
       "#{date} || #{amount} || || #{balance}"
-    elsif type == 'debit'
+    else
       "#{date} || || #{amount} || #{balance}"
     end
   end
