@@ -21,7 +21,7 @@ describe Printer do
     )
   end
   it 'can print a formated transactions' do
-    expect { Printer.new.print_statement(transactions) }.to output(
+    expect { Printer.print_statement(transactions) }.to output(
       "date || credit || debit || balance
 14/01/2012 || || 400.00 || 600.00\n13/01/2012 || 1000.00 || || 1000.00"
     ).to_stdout
