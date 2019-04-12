@@ -7,28 +7,25 @@ class Printer
     end
   end
 
-  class << self
-
-    private
-
-    def format_transaction(transaction)
-      date = format_date(transaction.date)
-      amount = format_amount(transaction.amount)
-      balance = format_amount(transaction.balance)
-      if transaction.type == 'credit'
-        "#{date} || #{amount} || || #{balance}"
-      else
-        "#{date} || || #{amount} || #{balance}"
-      end
+  def self.format_transaction(transaction)
+    date = format_date(transaction.date)
+    amount = format_amount(transaction.amount)
+    balance = format_amount(transaction.balance)
+    if transaction.type == 'credit'
+      "#{date} || #{amount} || || #{balance}"
+    else
+      "#{date} || || #{amount} || #{balance}"
     end
-
-    def format_date(date)
-      Date.parse(date).strftime('%d/%m/%Y')
-    end
-
-    def format_amount(amount)
-      format('%.2f', amount)
-    end
-
   end
+
+  def self.format_date(date)
+    Date.parse(date).strftime('%d/%m/%Y')
+  end
+
+  def self.format_amount(amount)
+    format('%.2f', amount)
+  end
+
+  private_class_method :format_transaction, :format_date, :format_amount
+
 end
